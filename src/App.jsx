@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import header from 'header'
-import footer from 'footer'
+import Header from './components/header'
+import Footer from './components/footer'
 
 function App() {
   const [size, setSize] = useState("1")
