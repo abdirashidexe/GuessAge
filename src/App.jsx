@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import header from 'header'
+import footer from 'footer'
 
 function App() {
   const [size, setSize] = useState("1")
@@ -12,7 +14,8 @@ function App() {
 
   return (
     <>
-      
+      <Header />
+      <Footer />
     </>
   )
 }
