@@ -14,6 +14,7 @@ function App() {
   return (
     <>
       <Header />
+      <Item attributes = {data.data.attributes}/>
       <Footer />
     </>
   )
