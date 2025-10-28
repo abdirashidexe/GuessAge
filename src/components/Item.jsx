@@ -1,10 +1,11 @@
-export default function Item(props){
+export default function Item({data}){
     return(<>
-        <h1>{props.name}</h1>
-        <h3>Description: {props.description}</h3>
+        <h1>{data.name}</h1>
+        {console.log(data)}
+        <h3>Description: {data.description}</h3>
         <div>
-            <p>Life expectancy between {props.life.min} and {props.life.max}</p>
-            <p>Hypoallergenic: {props.hypoallergenic}</p>
+            <p>Life expectancy between {data.life.min} and {data.life.max}</p>
+            <p>Hypoallergenic: {data.hypoallergenic}</p>
         </div>  
     </>)
 }
