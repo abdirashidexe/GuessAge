@@ -5,7 +5,6 @@ export default function Item(props){
         <div>
             <p>Life expectancy between {props.life.min} and {props.life.max}</p>
             <p>Hypoallergenic: {props.hypoallergenic}</p>
-        </div>
-        
+        </div>  
     </>)
 }
