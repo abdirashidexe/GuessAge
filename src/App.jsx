@@ -6,7 +6,7 @@ import Item from './components/Item'
 
 function App() {
   const [size, setSize] = useState("1")
-  const [dogData, sitDog] = useState();
+  const [dogData, setDogData] = useState();
   
   console.log("test App working")
   
@@ -14,17 +14,17 @@ function App() {
     fetch(`https://dogapi.dog/api/v2/breeds?page[size]=${size}`)
   .then(response => response.json())
   .then(data => {
-    sitDog(data)
-    console.log(data)
+    console.log(data.data[0].attributes.name)
+    setDogData(data.data[0].attributes.name)
   });
-  },[size]);
+  },[]);
 
-  console.log("test App working Fetch")
+  console.log(dogData)
 
   return (
     <>
       <Header />
-      <Item attributes = {dogData.data.attributes}/>
+      <Item data = {dogData}/>
       <Footer />
     </>
   )
