@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   const [size, setSize] = useState("1")
+  
   useEffect(()=>{
     fetch(`https://dogapi.dog/api/v2/breeds?page[size]=${size}`)
   .then(response => response.json())
