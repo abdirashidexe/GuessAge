@@ -6,27 +6,38 @@ import Item from './components/Item'
 
 function App() {
   const [size, setSize] = useState("1")
-  const [dogData, setDogData] = useState();
+  const [dogData, setDogData] = useState({
+    name: "",
+    description: "",
+    life: {min: 0, max:0},
+    female_weight:{min:0, max:0},
+    male_weight:{min:0, max:0}
+  });
+  const [isDogReceived, setIsDogReceived] = useState(false)
 
-  console.log("test App working 2")
+ 
 
   useEffect(() => {
-    console.log("ran something")
-    fetch(`https://dogapi.dog/api/v2/breeds?page[size]=${size}`)
-      .then(response => { response.json(); console.log(response) })
-      .then(data => {
-        console.log("test", data)
-        console.log(data.data[0].attributes.name)
-        setDogData(data.data[0].attributes)
-      })
+    fetch(`https://dogapi.dog/api/v2/breeds?page%5Bsize%5D=1`)
+      .then(response => response.json())
+      .then(resJson => {setDogData(resJson.data[0].attributes)})
   }, []);
 
-  console.log(dogData)
+  useEffect(()=>{
+    if(dogData.name != "" && dogData.life.min >0) setIsDogReceived(true)
+  },[dogData])
 
+  
   return (
     <>
       <Header />
-      <div>{dogData.name}</div>
+      {isDogReceived? <>
+      
+        <Item data = {dogData} />
+
+  
+
+      </> : null}
       <Footer />
     </>
   )
