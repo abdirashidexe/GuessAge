@@ -14,8 +14,15 @@ function App() {
     male_weight:{min:0, max:0}
   });
   const [isDogReceived, setIsDogReceived] = useState(false)
-
- 
+  const [dogImg, setDogImg] = useState(null)
+  
+  useEffect(()=>{
+    if(dogData.name != ""){
+      fetch(`https://dog.ceo/api/breed/${dogData.name.toLowerCase()}/images/random`)
+    .then(response => response.json())
+    .then(data => {setDogImg(data.message)})
+    }
+  },[dogData]);
 
   useEffect(() => {
     fetch(`https://dogapi.dog/api/v2/breeds?page%5Bsize%5D=1`)
@@ -33,7 +40,7 @@ function App() {
       <Header />
       {isDogReceived? <>
       
-        <Item data = {dogData} />
+        <Item data = {dogData} dogImg = {dogImg} />
 
   
 
