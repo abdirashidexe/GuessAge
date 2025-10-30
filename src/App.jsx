@@ -15,6 +15,8 @@ function App() {
   });
   const [isDogReceived, setIsDogReceived] = useState(false)
   const [dogImg, setDogImg] = useState(null)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   
   useEffect(()=>{
     if(dogData.name != ""){
@@ -34,6 +36,9 @@ function App() {
     if(dogData.name != "" && dogData.life.min >0) setIsDogReceived(true)
   },[dogData])
 
+  function showNext() {
+    
+  }
   
   return (
     <>
@@ -45,6 +50,7 @@ function App() {
   
 
       </> : null}
+      <button onClick={showNext}>Next</button>
       <Footer />
     </>
   )
