@@ -37,7 +37,22 @@ function App() {
   },[dogData])
 
   function showNext() {
+    setLoading(true);
+    setIsDogReceived(false);
+
+    const randomPage = Math.floor(Math.random() * 100) + 1; // Random page 1-100
+
+    fetch(`https://dogapi.dog/api/v2/breeds?page%5Bnumber%5D=${randomPage}&page%5Bsize%5D=1`)
     
+    .then(response => response.json())
+    .then(resJson => {
+      setDogData(resJson.data[0].attributes);
+      setLoading(false);
+    })
+    .catch(() => {
+      setError(true);
+      setLoading(false);
+    })
   }
   
   return (
