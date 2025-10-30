@@ -1,4 +1,7 @@
 export default function Item({data, dogImg}){
+    function showNext() {    
+    }
+    
     return(<>
         <h1>{data.name}</h1>
         {console.log(data)}
@@ -9,6 +12,7 @@ export default function Item({data, dogImg}){
             <p>Male Weight: {data.male_weight.min}-{data.male_weight.max} </p>
             <p>Life expectancy between {data.life.min} and {data.life.max} years</p>
             <p>Hypoallergenic? {data.hypoallergenic? "yes": "no"}</p>
+            <button onClick={showNext}>Next</button>
         </div>  
     </>)
 }
