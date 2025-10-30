@@ -23,6 +23,7 @@ function App() {
       fetch(`https://dog.ceo/api/breed/${dogData.name.toLowerCase()}/images/random`)
     .then(response => response.json())
     .then(data => {setDogImg(data.message)})
+    .catch(() => setError(true))
     }
   },[dogData]);
 
@@ -30,11 +31,35 @@ function App() {
     fetch(`https://dogapi.dog/api/v2/breeds?page%5Bsize%5D=1`)
       .then(response => response.json())
       .then(resJson => {setDogData(resJson.data[0].attributes)})
+      .catch(() => setError(true))
   }, []);
 
   useEffect(()=>{
-    if(dogData.name != "" && dogData.life.min >0) setIsDogReceived(true)
+    if(dogData.name != "" && dogData.life.min >0) setIsDogReceived(true) 
+      setLoading(false);
   },[dogData])
+
+    if (loading) {
+    return (
+      <>
+        <h1>The content is loading..</h1>
+      </>
+    )
+  }
+
+  function handleError() {
+    setError(false)
+  }
+
+  if (error) {
+    return (
+      <>
+        <h1>There was an error loading the content.</h1>
+        <button onClick={handleError}>Try Again</button>
+        <div id="error-div"></div>
+      </>
+    );
+  }
 
   function showNext() {
     setLoading(true);
@@ -60,7 +85,7 @@ function App() {
       <Header />
       {isDogReceived? <>
       
-        <Item data = {dogData} dogImg = {dogImg} />
+        <Item data = {dogData} dogImg = {dogImg} loading={loading} />
 
   
 
